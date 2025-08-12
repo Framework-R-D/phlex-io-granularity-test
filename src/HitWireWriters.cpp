@@ -497,7 +497,7 @@ double AOS_element_perGroup(int numEvents, int hitsPerEvent, int wiresPerEvent, 
     return totalTime;
 } 
 
-std::vector<WriterResult> updatedOutAOS(int nThreads, int iter, int numEvents, int hitsPerEvent, int wiresPerEvent, int roisPerWire, int numSpills, const std::string& outputDir) {
+std::vector<WriterResult> outAOS(int nThreads, int iter, int numEvents, int hitsPerEvent, int wiresPerEvent, int roisPerWire, int numSpills, const std::string& outputDir) {
     std::vector<WriterResult> results;
     
     // Create progressive table printer
@@ -555,7 +555,7 @@ std::map<std::string, std::vector<std::pair<int, double>>> benchmarkAOSScaling(i
     std::map<std::string, std::vector<std::pair<int, double>>> data;
     for (int threads : threadCounts) {
         ROOT::EnableImplicitMT(threads);
-        auto results = updatedOutAOS(threads, iter, 1000000, 100, 100, 10, 10, "./output");
+        auto results = outAOS(threads, iter, 1000000, 100, 100, 10, 10, "./output");
         for (const auto& res : results) {
             data[res.label].emplace_back(threads, res.avg);
         }
@@ -788,7 +788,7 @@ double SOA_topObject_perDataProduct(int numEvents, int hitsPerEvent, int wiresPe
     return totalTime;
 } 
 
-std::vector<WriterResult> updatedOutSOA(int nThreads, int iter, int numEvents, int hitsPerEvent, int wiresPerEvent, int roisPerWire, int numSpills, const std::string& outputDir) {
+std::vector<WriterResult> outSOA(int nThreads, int iter, int numEvents, int hitsPerEvent, int wiresPerEvent, int roisPerWire, int numSpills, const std::string& outputDir) {
     std::vector<WriterResult> results;
     
     // Create progressive table printer

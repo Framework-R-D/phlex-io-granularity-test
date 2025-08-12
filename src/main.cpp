@@ -78,11 +78,13 @@ int main() {
     int numSpills = 10;
     const std::string kOutputDir = "./output";
     
+    // Create output directory if it doesn't exist
+    std::filesystem::create_directories(kOutputDir);
 
     // Commented: AOS writer/reader benchmarks
-    auto aos_writer_results = updatedOutAOS(nThreads, 3, numEvents, hitsPerEvent, wiresPerEvent, roisPerWire, numSpills, kOutputDir);
+    auto aos_writer_results = outAOS(nThreads, 3, numEvents, hitsPerEvent, wiresPerEvent, roisPerWire, numSpills, kOutputDir);
     visualize_aos_writer_results(aos_writer_results);
-    auto aos_reader_results = updatedInAOS(nThreads, 3, kOutputDir);
+    auto aos_reader_results = inAOS(nThreads, 3, kOutputDir);
     visualize_aos_reader_results(aos_reader_results);
 
     // Collect AOS file sizes
@@ -112,9 +114,9 @@ int main() {
 
     // Add SOA visualization - use separate SOA-only functions
     // Commented: SOA writer/reader benchmarks
-    auto soa_writer_results = updatedOutSOA(nThreads, 3, numEvents, hitsPerEvent, wiresPerEvent, roisPerWire, numSpills, kOutputDir);
+    auto soa_writer_results = outSOA(nThreads, 3, numEvents, hitsPerEvent, wiresPerEvent, roisPerWire, numSpills, kOutputDir);
     visualize_soa_writer_results(soa_writer_results);
-    auto soa_reader_results = updatedInSOA(nThreads, 3, kOutputDir);
+    auto soa_reader_results = inSOA(nThreads, 3, kOutputDir);
     visualize_soa_reader_results(soa_reader_results);
 
     // Collect SOA file sizes

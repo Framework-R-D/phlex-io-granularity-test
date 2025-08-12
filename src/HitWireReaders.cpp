@@ -366,7 +366,7 @@ double readSOA_element_perGroup(const std::string& fileName, int nThreads) {
     return sw.RealTime();
 }
 
-std::vector<ReaderResult> updatedInAOS(int nThreads, int iter, const std::string& outputDir) {
+std::vector<ReaderResult> inAOS(int nThreads, int iter, const std::string& outputDir) {
     std::vector<ReaderResult> results;
     
     // Create progressive table printer
@@ -432,7 +432,7 @@ std::vector<ReaderResult> updatedInAOS(int nThreads, int iter, const std::string
     return results;
 }
 
-std::vector<ReaderResult> updatedInSOA(int nThreads, int iter, const std::string& outputDir) {
+std::vector<ReaderResult> inSOA(int nThreads, int iter, const std::string& outputDir) {
     std::vector<ReaderResult> results;
     
     // Create progressive table printer

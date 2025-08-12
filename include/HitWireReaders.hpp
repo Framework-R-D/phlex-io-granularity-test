@@ -14,5 +14,5 @@ double readAOS_topObject_perGroup(const std::string& fileName);
 double readAOS_element_perDataProduct(const std::string& fileName);
 double readAOS_element_perGroup(const std::string& fileName);
 
-std::vector<ReaderResult> updatedInAOS(int nThreads, int iter, const std::string& outputDir);
-std::vector<ReaderResult> updatedInSOA(int nThreads, int iter, const std::string& outputDir); 
+std::vector<ReaderResult> inAOS(int nThreads, int iter, const std::string& outputDir);
+std::vector<ReaderResult> inSOA(int nThreads, int iter, const std::string& outputDir); 
