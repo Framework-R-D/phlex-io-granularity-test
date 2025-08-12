@@ -1,89 +1,107 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.10)
+project(HitWireProject)
 
-project(
-  phlex-io-granularity-test
-  VERSION 0.0.1
-  LANGUAGES CXX
-  )
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-option(ENABLE_TSAN "Enable Thread Sanitizer" OFF)
-option(ENABLE_ASAN "Enable Address Sanitizer" OFF)
+# Use root-config to get the flags
+execute_process(
+    COMMAND root-config --cflags
+    OUTPUT_VARIABLE ROOT_CFLAGS
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+execute_process(
+    COMMAND root-config --libs
+    OUTPUT_VARIABLE ROOT_LIBS
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+execute_process(
+    COMMAND root-config --incdir
+    OUTPUT_VARIABLE ROOT_INCDIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_BUILD_TYPE "RelWithDebInfo")
-# set(CMAKE_BUILD_TYPE "Debug")
-add_compile_options(-Wall -Werror -Wunused -Wunused-parameter -pedantic)
+separate_arguments(ROOT_CFLAGS)
+separate_arguments(ROOT_LIBS)
 
-# GCC 14.1 issues many false positives re. array-bounds and stringop-overflow
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION
-                                             VERSION_GREATER_EQUAL "14.1"
-    )
-  add_compile_options(-Wno-array-bounds -Wno-stringop-overflow)
-endif ()
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${ROOT_INCDIR})
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
+file(GLOB SOURCES "src/*.cpp")
 
-# add_compile_options(-fprofile-instr-generate -fcoverage-mapping)
+# --- ROOT Dictionary Generation ---
+set(DICT_HEADERS ${CMAKE_SOURCE_DIR}/include/Wire.hpp ${CMAKE_SOURCE_DIR}/include/Hit.hpp)
+set(LINKDEF_FILE ${CMAKE_SOURCE_DIR}/include/WireLinkDef.h)
+set(DICT_OUTPUT ${CMAKE_BINARY_DIR}/WireDict.cxx)
 
-list(PREPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/Modules)
+add_custom_command(
+    OUTPUT ${DICT_OUTPUT}
+    COMMAND rootcling -f ${DICT_OUTPUT} -c ${DICT_HEADERS} ${LINKDEF_FILE}
+    DEPENDS ${DICT_HEADERS} ${LINKDEF_FILE}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
 
-#find_library(BACKTRACE_LIB backtrace REQUIRED)
-#find_path(BACKTRACE_INC backtrace.h REQUIRED)
-#find_package(Boost REQUIRED COMPONENTS json program_options stacktrace_basic)
-#find_package(TBB REQUIRED)
-#find_package(fmt REQUIRED)
-#find_package(jsonnet REQUIRED)
-#find_package(spdlog REQUIRED)
-find_package(ROOT REQUIRED ROOTNTuple)
+set(DICTIONARY_SOURCES ${DICT_OUTPUT})
+add_executable(hitwire
+    src/main.cpp
+    src/HitWireGenerators.cpp
+    src/Utils.cpp
+    src/HitWireWriterHelpers.cpp
+    src/HitWireWriters.cpp
+    src/HitWireReaders.cpp
+    src/visualization.cpp
+    src/ProgressiveTablePrinter.cpp
+)
 
-# Apply ThreadSanitizer flags if enabled
-if (ENABLE_TSAN)
-  # Check if the compiler supports ThreadSanitizer
-  if (CMAKE_CXX_COMPILER_ID MATCHES "Clang"
-      OR CMAKE_CXX_COMPILER_ID MATCHES "AppleClang"
-      OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
-      )
-    message(STATUS "Enabling ThreadSanitizer")
-    # Add the sanitizer flag
-    add_compile_options(-fsanitize=thread -g -O1)
-    add_link_options(-fsanitize=thread)
-    # Ensure no optimizations interfere with TSan
-    set(CMAKE_CXX_FLAGS
-        "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -fno-optimize-sibling-calls"
-        )
-  else ()
-    message(
-      FATAL_ERROR
-        "ThreadSanitizer is not supported with ${CMAKE_CXX_COMPILER_ID}"
-      )
-  endif ()
-endif ()
+target_compile_options(hitwire PRIVATE ${ROOT_CFLAGS})
+target_link_libraries(hitwire PRIVATE ${ROOT_LIBS} WireDict AOSDict SOADict)
 
-if (ENABLE_ASAN)
-  # Check if the compiler supports AddressSanitizer
-  if (CMAKE_CXX_COMPILER_ID MATCHES "Clang"
-      OR CMAKE_CXX_COMPILER_ID MATCHES "AppleClang"
-      OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
-      )
-    message(STATUS "Enabling AddressSanitizer")
-    # Add the sanitizer flag
-    add_compile_options(-fsanitize=address -g -O1)
-    add_link_options(-fsanitize=address)
-    # Ensure no optimizations interfere with TSan
-    set(CMAKE_CXX_FLAGS
-        "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -fno-optimize-sibling-calls"
-        )
-  else ()
-    message(
-      FATAL_ERROR
-        "AddressSanitizer is not supported with ${CMAKE_CXX_COMPILER_ID}"
-      )
-  endif ()
-endif ()
+# Add this section to build the dictionary as a shared library
+add_library(WireDict SHARED ${DICT_OUTPUT})
+target_include_directories(WireDict PRIVATE ${ROOT_INCDIR})
+target_link_libraries(WireDict PRIVATE ${ROOT_LIBS})
 
-#add_subdirectory(sources)
+# --- AOS Dictionary Generation ---
+set(AOS_DICT_HEADERS ${CMAKE_SOURCE_DIR}/include/Hit.hpp ${CMAKE_SOURCE_DIR}/include/Wire.hpp ${CMAKE_SOURCE_DIR}/include/HitWireWriterHelpers.hpp)
+set(AOS_LINKDEF_FILE ${CMAKE_SOURCE_DIR}/include/updatedLinkDef.h)
+set(AOS_DICT_OUTPUT ${CMAKE_BINARY_DIR}/AOSDict.cxx)
 
-include(CTest)
-#add_subdirectory(test)
+add_custom_command(
+    OUTPUT ${AOS_DICT_OUTPUT}
+    COMMAND rootcling -f ${AOS_DICT_OUTPUT} -c ${AOS_DICT_HEADERS} ${AOS_LINKDEF_FILE}
+    DEPENDS ${AOS_DICT_HEADERS} ${AOS_LINKDEF_FILE}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+
+add_library(AOSDict SHARED ${AOS_DICT_OUTPUT})
+target_include_directories(AOSDict PRIVATE ${ROOT_INCDIR})
+add_dependencies(AOSDict WireDict)
+target_link_libraries(AOSDict PRIVATE ${ROOT_LIBS} WireDict)
+
+# --- SOA Dictionary Generation ---
+set(SOA_DICT_HEADERS ${CMAKE_SOURCE_DIR}/include/Hit.hpp ${CMAKE_SOURCE_DIR}/include/Wire.hpp)
+set(SOA_LINKDEF_FILE ${CMAKE_SOURCE_DIR}/include/SOALinkDef.h)
+set(SOA_DICT_OUTPUT ${CMAKE_BINARY_DIR}/SOADict.cxx)
+
+add_custom_command(
+    OUTPUT ${SOA_DICT_OUTPUT}
+    COMMAND rootcling -f ${SOA_DICT_OUTPUT} -c ${SOA_DICT_HEADERS} ${SOA_LINKDEF_FILE}
+    DEPENDS ${SOA_DICT_HEADERS} ${SOA_LINKDEF_FILE}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+
+add_library(SOADict SHARED ${SOA_DICT_OUTPUT})
+target_include_directories(SOADict PRIVATE ${ROOT_INCDIR})
+add_dependencies(SOADict WireDict)
+target_link_libraries(SOADict PRIVATE ${ROOT_LIBS} WireDict)
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+add_subdirectory(tests)

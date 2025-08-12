@@ -1,0 +1,2 @@
+/home/smshovan/spack/opt/spack/linux-cascadelake/llvm-20.1.8-jvzmmzdmxfa47phxvmhafyscvy5qdz26/bin/llvm-ar qc ../../../lib/libgmock.a "CMakeFiles/gmock.dir/src/gmock-all.cc.o"
+/home/smshovan/spack/opt/spack/linux-cascadelake/llvm-20.1.8-jvzmmzdmxfa47phxvmhafyscvy5qdz26/bin/llvm-ranlib ../../../lib/libgmock.a

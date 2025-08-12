@@ -1,0 +1,259 @@
+Started at: Fri Aug  8 02:24:40 PM CDT 2025
+
+AOS Writer Benchmarks (Progressive Results)
+Writer                          Average (s)     StdDev (s)      Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+----------------------------------------------------------------------------------------------------
+AOS_event_allDataProduct        1386.09         24.0516         1365.42     1380.35     1412.49     
+AOS_event_perDataProduct        1404.03         13.6211         1402.63     1391.17     1418.3      
+AOS_event_perGroup              1528.87         10.8919         1523.72     1521.51     1541.38     
+AOS_spill_allDataProduct        1403.19         21.8924         1394.09     1387.32     1428.17     
+AOS_spill_perDataProduct        1451.88         4.59222         1454.54     1454.53     1446.58     
+AOS_spill_perGroup              1608.6          30.9783         1573.09     1622.67     1630.05     
+AOS_topObject_perDataProduct    1886.29         23.6347         1908.41     1861.39     1889.07     
+AOS_topObject_perGroup          2223.93         153.448         2069.06     2375.91     2226.84     
+AOS_element_perDataProduct      9036.46         290.637         9263.95     9136.39     8709.04     
+AOS_element_perGroup            9512.58         5.85848         9509.93     9508.51     9519.29     
+----------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/aos_write_times.pdf has been created
+AOS Write times plot saved to ../experiments/aos_write_times.pdf
+
+AOS Reader Benchmarks (Progressive Results)
+Reader                          Cold (s)        Warm Avg (s)    Warm StdDev (s) Cold Itr 1  Cold Itr 2  Cold Itr 3  
+--------------------------------------------------------------------------------------------------------------------
+AOS_event_allDataProduct        33.3417         14.37           0.160851        71.9278     13.9203     14.1769     
+AOS_event_perDataProduct        35.1586         31.4277         29.6551         76.7123     14.5355     14.2281     
+AOS_event_perGroup              51.9126         47.705          28.2335         77.6921     62.4848     15.5608     
+AOS_spill_allDataProduct        68.3201         65.4147         3.68427         77.1894     64.7431     63.0277     
+AOS_spill_perDataProduct        34.5705         15.0321         0.706249        74.9012     14.6027     14.2074     
+AOS_spill_perGroup              36.4113         33.8082         31.113          77.6789     15.6192     15.9357     
+AOS_topObject_perDataProduct    51.1189         32.3858         29.8118         77.2536     61.2481     14.8549     
+AOS_topObject_perGroup          37.224          24.8051         13.0395         76.8894     17.1348     17.6477     
+AOS_element_perDataProduct      54.3208         44.2671         25.8613         79.7608     65.3478     17.8537     
+AOS_element_perGroup            36.5503         22.7972         10.6541         76.8925     16.3546     16.4039     
+--------------------------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/aos_cold_times.pdf has been created
+Info in <TCanvas::Print>: pdf file ../experiments/aos_warm_times.pdf has been created
+AOS Read times plots saved to ../experiments/aos_cold_times.pdf and ../experiments/aos_warm_times.pdf
+Info in <TCanvas::Print>: pdf file ../experiments/aos_file_sizes.pdf has been created
+AOS File sizes plot saved to ../experiments/aos_file_sizes.pdf
+
+SOA Writer Benchmarks (Progressive Results)
+SOA Writer                      Average (s)     StdDev (s)      Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+----------------------------------------------------------------------------------------------------
+SOA_event_allDataProduct        1241.76         26.9508         1272.71     1229.11     1223.47     
+SOA_event_perDataProduct        1221.71         0.337736        1222.1      1221.58     1221.46     
+SOA_event_perGroup              1255.85         32.7167         1218.45     1279.16     1269.94     
+SOA_spill_allDataProduct        1295.01         25.3012         1321.89     1291.46     1271.67     
+SOA_spill_perDataProduct        1261.6          1.84485         1259.51     1262.3      1263        
+SOA_spill_perGroup              1264.11         3.26173         1260.71     1264.41     1267.22     
+SOA_topObject_perDataProduct    1676.61         3.56347         1675.12     1674.03     1680.67     
+SOA_topObject_perGroup          1686.51         1.69286         1688.09     1686.73     1684.72     
+SOA_element_perDataProduct      8372.83         11.7866         8370.18     8385.72     8362.59     
+SOA_element_perGroup            9273.8          7.19377         9281.83     9267.94     9271.64     
+----------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/soa_write_times.pdf has been created
+SOA Write times plot saved to ../experiments/soa_write_times.pdf
+
+SOA Reader Benchmarks (Progressive Results)
+SOA Reader                      Cold (s)        Warm Avg (s)    Warm StdDev (s) Cold Itr 1  Cold Itr 2  Cold Itr 3  
+--------------------------------------------------------------------------------------------------------------------
+SOA_event_allDataProduct        30.9449         11.6922         0.203153        69.4332     11.5059     11.8955     
+SOA_event_perDataProduct        64.6168         62.3536         5.33304         74.9215     59.4374     59.4914     
+SOA_event_perGroup              49.8304         39.4836         28.4118         74.5209     62.9312     12.0389     
+SOA_spill_allDataProduct        50.445          48.4619         31.1219         74.6466     63.9628     12.7256     
+SOA_spill_perDataProduct        49.2495         47.4348         29.8553         75.3973     59.1346     13.2167     
+SOA_spill_perGroup              49.4007         47.6999         30.3114         75.394      59.3607     13.4475     
+SOA_topObject_perDataProduct    49.4485         48.7726         30.3755         75.1801     59.3671     13.7982     
+SOA_topObject_perGroup          48.4011         45.3793         27.4385         74.5359     56.3785     14.2889     
+SOA_element_perDataProduct      60.3652         45.5578         25.0847         74.4011     55.2588     51.4357     
+SOA_element_perGroup            34.7943         17.392          0.0916622       69.7258     17.2837     17.3734     
+--------------------------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/soa_cold_times.pdf has been created
+Info in <TCanvas::Print>: pdf file ../experiments/soa_warm_times.pdf has been created
+SOA Read times plots saved to ../experiments/soa_cold_times.pdf and ../experiments/soa_warm_times.pdf
+Info in <TCanvas::Print>: pdf file ../experiments/soa_file_sizes.pdf has been created
+SOA File sizes plot saved to ../experiments/soa_file_sizes.pdf
+Info in <TCanvas::Print>: pdf file ../experiments/comparison_write_times.pdf has been created
+Comparison write times plot saved to ../experiments/comparison_write_times.pdf
+Info in <TCanvas::Print>: pdf file ../experiments/comparison_cold_times.pdf has been created
+Info in <TCanvas::Print>: pdf file ../experiments/comparison_warm_times.pdf has been created
+Comparison read times plots saved to ../experiments/comparison_cold_times.pdf and ../experiments/comparison_warm_times.pdf
+Info in <TCanvas::Print>: pdf file ../experiments/comparison_file_sizes.pdf has been created
+Comparison file sizes plot saved to ../experiments/comparison_file_sizes.pdf
+
+
+AOS File Sizes (MB)
+File                                    Size (MB)       
+--------------------------------------------------------
+AOS_event_allDataProduct                35977.2         
+AOS_event_perDataProduct                35967.6         
+AOS_event_perGroup                      36138.5         
+AOS_spill_allDataProduct                35976.1         
+AOS_spill_perDataProduct                35964.7         
+AOS_spill_perGroup                      36147.5         
+AOS_topObject_perDataProduct            35967.2         
+AOS_topObject_perGroup                  36138.8         
+AOS_element_perDataProduct              37423.2         
+AOS_element_perGroup                    35970.7         
+--------------------------------------------------------
+
+SOA File Sizes (MB)
+File                                    Size (MB)       
+--------------------------------------------------------
+SOA_event_allDataProduct                34866.6         
+SOA_event_perDataProduct                34856.1         
+SOA_event_perGroup                      34855.6         
+SOA_spill_allDataProduct                34865.4         
+SOA_spill_perDataProduct                34854.5         
+SOA_spill_perGroup                      34853.9         
+SOA_topObject_perDataProduct            34856.2         
+SOA_topObject_perGroup                  34855.7         
+SOA_element_perDataProduct              34696.4         
+SOA_element_perGroup                    34859.9         
+--------------------------------------------------------
+
+
+AOS Reader Benchmarks (Progressive Results)
+Reader                          Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+AOS_event_allDataProduct        70.6358         32.4523         16.8972         70.6358     44.4005     20.5042     
+AOS_event_perDataProduct        30.7252         17.4063         1.67026         30.7252     16.2252     18.5873     
+AOS_event_perGroup              78.2752         69.2905         2.21766         78.2752     70.8586     67.7223     
+AOS_spill_allDataProduct        72.2376         15.1097         0.285995        72.2376     15.312      14.9075     
+AOS_spill_perDataProduct        76.6416         18.1506         4.99183         76.6416     21.6804     14.6209     
+AOS_spill_perGroup              78.2947         72.7734         1.30868         78.2947     73.6987     71.848      
+AOS_topObject_perDataProduct    76.6802         66.3154         6.56675         76.6802     70.9588     61.672      
+AOS_topObject_perGroup          72.2678         17.0947         0.03343         72.2678     17.071      17.1183     
+AOS_element_perDataProduct      81.2162         70.5279         4.67426         81.2162     73.8331     67.2227     
+AOS_element_perGroup            72.2085         17.6052         0.463086        72.2085     17.2777     17.9326     
+--------------------------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/aos_cold_times.pdf has been created
+Info in <TCanvas::Print>: pdf file ../experiments/aos_warm_times.pdf has been created
+AOS Read times plots saved to ../experiments/aos_cold_times.pdf and ../experiments/aos_warm_times.pdf
+
+SOA Reader Benchmarks (Progressive Results)
+SOA Reader                      Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+SOA_event_allDataProduct        76.1491         65.8167         3.88268         76.1491     68.5621     63.0712     
+SOA_event_perDataProduct        75.1981         63.2013         7.75267         75.1981     68.6833     57.7194     
+SOA_event_perGroup              70.0152         12.731          0.387029        70.0152     13.0047     12.4573     
+SOA_spill_allDataProduct        75.9516         65.3419         3.1069          75.9516     67.5388     63.145      
+SOA_spill_perDataProduct        75.6811         64.4391         5.50953         75.6811     68.335      60.5433     
+SOA_spill_perGroup              69.7439         13.3737         0.0887724       69.7439     13.3109     13.4364     
+SOA_topObject_perDataProduct    75.0378         62.0906         5.01232         75.0378     65.6349     58.5464     
+SOA_topObject_perGroup          72.9667         14.8509         0.793252        72.9667     15.4118     14.29       
+SOA_element_perDataProduct      74.7901         61.2379         2.18957         74.7901     62.7862     59.6897     
+SOA_element_perGroup            71.2964         66.9666         1.10835         71.2964     67.7503     66.1829     
+--------------------------------------------------------------------------------------------------------------------
+
+AOS Reader Benchmarks (Progressive Results)
+Reader                          Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+AOS_event_allDataProduct        76.9081         68.4727         3.82908         76.9081     71.1802     65.7651     
+AOS_event_perDataProduct        76.569          59.4517         15.9172         76.569      70.7068     48.1965     
+AOS_event_perGroup              72.504          16.2184         0.212247        72.504      16.3684     16.0683     
+AOS_spill_allDataProduct        77.3913         25.6644         15.1478         77.3913     36.3755     14.9533     
+AOS_spill_perDataProduct        72.2998         14.7949         0.111572        72.2998     14.8738     14.716      
+AOS_spill_perGroup              79.5712         18.4127         3.25466         79.5712     20.7141     16.1113     
+AOS_topObject_perDataProduct    75.0637         20.4445         5.62301         75.0637     16.4684     24.4206     
+AOS_topObject_perGroup          74.6721         16.646          0.010429        74.6721     16.6386     16.6534     
+AOS_element_perDataProduct      81.1952         67.3329         3.79851         81.1952     70.0188     64.6469     
+AOS_element_perGroup            76.7513         67.5625         4.46599         76.7513     70.7204     64.4045     
+--------------------------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/aos_cold_times.pdf has been created
+Info in <TCanvas::Print>: pdf file ../experiments/aos_warm_times.pdf has been created
+AOS Read times plots saved to ../experiments/aos_cold_times.pdf and ../experiments/aos_warm_times.pdf
+
+SOA Reader Benchmarks (Progressive Results)
+SOA Reader                      Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+SOA_event_allDataProduct        70.0029         12.2816         0.0116801       70.0029     12.2733     12.2898     
+SOA_event_perDataProduct        75.5614         64.2167         6.35825         75.5614     68.7127     59.7208     
+SOA_event_perGroup              69.5905         12.7274         0.0120646       69.5905     12.7189     12.736      
+SOA_spill_allDataProduct        75.5558         65.9074         4.05918         75.5558     68.7777     63.0372     
+SOA_spill_perDataProduct        74.8966         64.1721         5.87654         74.8966     68.3275     60.0168     
+SOA_spill_perGroup              69.7433         13.8875         0.0109334       69.7433     13.8953     13.8798     
+SOA_topObject_perDataProduct    74.7321         33.6911         12.7141         74.7321     24.7009     42.6813     
+SOA_topObject_perGroup          74.7666         14.171          0.142792        74.7666     14.2719     14.07       
+SOA_element_perDataProduct      75.0968         62.9074         5.87184         75.0968     67.0594     58.7554     
+SOA_element_perGroup            71.2673         67.8686         2.24615         71.2673     69.4568     66.2803     
+--------------------------------------------------------------------------------------------------------------------
+
+
+AOS Reader Benchmarks (Progressive Results)
+Reader                          Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+AOS_event_allDataProduct        76.9343         66.414          0.19194         76.9343     66.2783     66.5498     
+AOS_event_perDataProduct        76.8318         42.1397         35.4932         76.8318     67.2372     17.0422     
+AOS_event_perGroup              72.6786         16.4668         0.22423         72.6786     16.6253     16.3082     
+AOS_spill_allDataProduct        77.8346         40.2178         36.0296         77.8346     65.6945     14.741      
+AOS_spill_perDataProduct        71.7817         14.7808         0.14671         71.7817     14.677      14.8845     
+AOS_spill_perGroup              77.6598         63.1045         2.53395         77.6598     64.8963     61.3127     
+AOS_topObject_perDataProduct    76.774          50.422          29.7362         76.774      71.4487     29.3953     
+AOS_topObject_perGroup          72.48           16.6396         0.0145459       72.48       16.6499     16.6293     
+AOS_element_perDataProduct      80.6893         69.4664         6.08902         80.6893     73.772      65.1608     
+AOS_element_perGroup            76.3637         67.8814         2.16385         76.3637     69.4115     66.3513     
+--------------------------------------------------------------------------------------------------------------------
+
+Info in <TCanvas::Print>: pdf file ../experiments/aos_cold_times.pdf has been created
+Info in <TCanvas::Print>: pdf file ../experiments/aos_warm_times.pdf has been created
+AOS Read times plots saved to ../experiments/aos_cold_times.pdf and ../experiments/aos_warm_times.pdf
+
+SOA Reader Benchmarks (Progressive Results)
+SOA Reader                      Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+SOA_event_allDataProduct        70.0248         11.881          0.0414449       70.0248     11.9103     11.8517     
+SOA_event_perDataProduct        75.1642         61.543          5.18483         75.1642     65.2092     57.8767     
+SOA_event_perGroup              74.8391         64.3523         6.61296         74.8391     69.0283     59.6762     
+SOA_spill_allDataProduct        69.9029         12.764          0.00435225      69.9029     12.7671     12.7609     
+SOA_spill_perDataProduct        74.9718         62.7267         5.17703         74.9718     66.3874     59.066      
+SOA_spill_perGroup              74.8438         63.929          7.01452         74.8438     68.889      58.969      
+SOA_topObject_perDataProduct    69.8355         14.2233         0.233594        69.8355     14.0581     14.3885     
+SOA_topObject_perGroup          75.4384         62.9959         6.18004         75.4384     67.3659     58.626      
+SOA_element_perDataProduct      74.61           64.7283         4.50918         74.61       67.9168     61.5399     
+SOA_element_perGroup            69.8829         17.7035         0.0859531       69.8829     17.6427     17.7642     
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+Overnight Results
+
+AOS Reader Benchmarks (Progressive Results)
+Reader                          Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+AOS_event_allDataProduct        72.9267         14.2618         0.0536071       72.9267     14.2997     14.2239     
+AOS_event_perDataProduct        79.8541         16.9102         3.60395         79.8541     19.4586     14.3618     
+AOS_event_perGroup              71.9459         15.4557         0.097416        71.9459     15.3868     15.5245     
+AOS_spill_allDataProduct        72.0949         14.8437         0.00822622      72.0949     14.8495     14.8379     
+AOS_spill_perDataProduct        72.5089         15.082          0.309361        72.5089     15.3008     14.8633     
+AOS_spill_perGroup              72.0351         15.9998         0.370493        72.0351     16.2617     15.7378     
+AOS_topObject_perDataProduct    71.8501         14.8743         0.0550504       71.8501     14.9132     14.8354     
+AOS_topObject_perGroup          80.3557         17.8002         2.11173         80.3557     19.2934     16.307     
+AOS_element_perDataProduct      74.6171         17.0615         0.048557        74.6171     17.0958     17.0272     
+AOS_element_perGroup            72.0116         16.0258         0.159372        72.0116     16.1385     15.9131     
+--------------------------------------------------------------------------------------------------------------------
+
+
+SOA Reader Benchmarks (Progressive Results)
+SOA Reader                      Cold (s)        Warm Avg (s)    Warm StdDev (s) Itr 1 (s)   Itr 2 (s)   Itr 3 (s)   
+--------------------------------------------------------------------------------------------------------------------
+SOA_event_allDataProduct        69.8438         11.9893         0.160108        69.8438     12.1025     11.8761     
+SOA_event_perDataProduct        69.4831         12.2105         0.00641846      69.4831     12.215      12.2059     
+SOA_event_perGroup              75.0313         15.8235         5.2707          75.0313     19.5504     12.0965     
+SOA_spill_allDataProduct        70.2727         12.9573         0.0636728       70.2727     12.9123     13.0023     
+SOA_spill_perDataProduct        76.1269         13.3642         0.193244        76.1269     13.5009     13.2276     
+SOA_spill_perGroup              71.5798         13.1568         0.449401        71.5798     13.4746     12.839      
+SOA_topObject_perDataProduct    75.5257         13.9546         0.229219        75.5257     14.1166     13.7925     
+SOA_topObject_perGroup          75.2861         14.1186         0.532478        75.2861     14.4951     13.7421     
+SOA_element_perDataProduct      69.9979         14.7546         0.439989        69.9979     14.4435     15.0658     
+SOA_element_perGroup            69.7514         17.5689         0.0955761       69.7514     17.5014     17.6365     
+--------------------------------------------------------------------------------------------------------------------
+
+
+

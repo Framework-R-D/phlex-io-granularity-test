@@ -1,0 +1,18 @@
+Start testing: Aug 12 10:33 CDT
+----------------------------------------------------------
+1/1 Testing: test_split_range_by_clusters
+1/1 Test: test_split_range_by_clusters
+Command: "/home/smshovan/project2/RNTuple-I-O-Config/build/tests/test_split_range_by_clusters"
+Directory: /home/smshovan/project2/RNTuple-I-O-Config/build
+"test_split_range_by_clusters" start time: Aug 12 10:33 CDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.91 sec
+----------------------------------------------------------
+Test Passed.
+"test_split_range_by_clusters" end time: Aug 12 10:33 CDT
+"test_split_range_by_clusters" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 12 10:33 CDT
